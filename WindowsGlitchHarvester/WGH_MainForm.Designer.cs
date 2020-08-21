@@ -1448,7 +1448,7 @@
             this.MinimumSize = new System.Drawing.Size(880, 664);
             this.Name = "WGH_MainForm";
             this.Tag = "color:dark";
-            this.Text = "Windows Glitch Harvester";
+            this.Text = "Windows Glitch Harvester BPS-Mod";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WGH_MainForm_FormClosing);
             this.Load += new System.EventHandler(this.WGH_MainForm_Load);
             this.gbNightmareEngineSettings.ResumeLayout(false);
