@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WGH Legacy BPS-Mod")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("WGH+")]
+[assembly: AssemblyDescription("WGH Legacy fork")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WGH Legacy BPS-Mod")]
-[assembly: AssemblyCopyright("KScott 2020")]
+[assembly: AssemblyProduct("WGH+")]
+[assembly: AssemblyCopyright("heyitzrare")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

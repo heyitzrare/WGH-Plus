@@ -29,7 +29,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>logo.ico</ApplicationIcon>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -262,6 +262,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="icon.ico" />
     <Content Include="LICENSES\Ceras License.txt" />
     <Content Include="LICENSES\DISCLAIMER.TXT" />
     <Content Include="LICENSES\DOLPHINWARNING.TXT" />
@@ -269,7 +270,6 @@
     <Content Include="LICENSES\Newtonsoft Json License.txt" />
     <Content Include="LICENSES\SevenZip License.txt" />
     <Content Include="LICENSES\SevenZipSharp License.txt" />
-    <Content Include="logo.ico" />
     <AdditionalFiles Include="python-bps\py38\libcrypto-1_1.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AdditionalFiles>

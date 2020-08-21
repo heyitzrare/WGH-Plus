@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WGH_BlastEditorForm));
             this.lbBlastLayer = new System.Windows.Forms.ListBox();
             this.btnLoadCorrupt = new System.Windows.Forms.Button();
             this.btnSendToStash = new System.Windows.Forms.Button();
@@ -407,10 +408,11 @@
             this.Controls.Add(this.lbBlastLayer);
             this.Controls.Add(this.btnSendToStash);
             this.Controls.Add(this.btnLoadCorrupt);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(532, 532);
             this.Name = "WGH_BlastEditorForm";
             this.Tag = "color:normal";
-            this.Text = "Blast Editor (WGH BPS-Mod)";
+            this.Text = "Blast Editor (WGH+)";
             this.Load += new System.EventHandler(this.RTC_BlastEditorForm_Load);
             this.gbValueEdit.ResumeLayout(false);
             this.gbValueEdit.PerformLayout();
