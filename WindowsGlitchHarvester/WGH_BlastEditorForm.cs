@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -338,6 +341,7 @@ namespace WindowsGlitchHarvester
             BlastUnit bu2 = ObjectCopier.Clone(bu);
             sk.BlastLayer.Layer.Insert(pos, bu2);
 
+            MessageBox.Show(((BlastByte)bu).Domain);
 
             RefreshBlastLayer();
         }
@@ -376,6 +380,56 @@ namespace WindowsGlitchHarvester
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnImportBPS_Click(object sender, EventArgs e)
+        {
+            // Ask for BPS
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Title = "Select a BPS patch file to import",
+                CheckFileExists = true,
+                Filter = "BPS Patch File (*.bps)|*.bps"
+            };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Clear all changes
+                sk.BlastLayer.Layer.Clear();
+                RefreshBlastLayer();
+                // Process .bps file
+                Process proc = Process.Start(new ProcessStartInfo { 
+                    FileName = @"pythonbps\py38\python.exe", 
+                    Arguments = $"pythonbps\\test.py \"{openFileDialog.FileName}\"",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true
+                });
+                while (!proc.StandardOutput.EndOfStream)
+                {
+                    string line = proc.StandardOutput.ReadLine();
+                    Debug.WriteLine(line);
+                    if (line.StartsWith("sourceread: "))
+                    {
+                        long address;
+                        int value;
+
+                        address = long.Parse(line.Split(' ')[1]);
+
+                        proc.StandardOutput.ReadLine(); // Skip one line
+                        line = proc.StandardOutput.ReadLine();
+                        Debug.WriteLine(line);
+
+                        if (line.StartsWith("targetcrc32: ")) break;
+
+                        value = int.Parse( line, NumberStyles.HexNumber );
+
+                        sk.BlastLayer.Layer.Add(new BlastByte("File", address, BlastByteType.SET, value, true));
+                        RefreshBlastLayer();
+                    }
+                }
+                RefreshBlastLayer();
+            }
         }
     }
 }
