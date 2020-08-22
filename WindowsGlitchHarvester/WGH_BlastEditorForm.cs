@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Globalization;
 using System.IO;
 using System.Text;
@@ -14,7 +15,7 @@ namespace WindowsGlitchHarvester
 {
     public partial class WGH_BlastEditorForm : Form
     {
-        StashKey sk = null;
+        public StashKey sk = null;
 
         public WGH_BlastEditorForm()
         {
@@ -115,7 +116,7 @@ namespace WindowsGlitchHarvester
             bl.Apply();
         }*/
 
-        private void btnSendToStash_Click(object sender, EventArgs e)
+        public void btnSendToStash_Click(object sender = null, EventArgs e = null)
         {
             StashKey newSk = (StashKey)sk.Clone();
             newSk.Key = WGH_Core.GetRandomKey();
@@ -377,13 +378,19 @@ namespace WindowsGlitchHarvester
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void btnImportBPS_Click(object sender = null, EventArgs e = null)
         {
+            // Warn of buggy feature
+            if (
+                MessageBox.Show(
+                    "This feature is very poorly put together, uses a built-in copy of Python 3.8.5, \n" +
+                    "therefore requires Windows >=7, and does not work on multiple-file blasts. \n" +
+                    "Are you sure you want to use it?",
+                    $"WGH+ {WGH_Core.WghVersion}",
+                    MessageBoxButtons.YesNo
+                ) != DialogResult.Yes
+            ) return;
 
-        }
-
-        private void btnImportBPS_Click(object sender, EventArgs e)
-        {
             // Ask for BPS
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
@@ -399,8 +406,8 @@ namespace WindowsGlitchHarvester
                 RefreshBlastLayer();
                 // Process .bps file
                 Process proc = Process.Start(new ProcessStartInfo { 
-                    FileName = @"pythonbps\py38\python.exe", 
-                    Arguments = $"pythonbps\\test.py \"{openFileDialog.FileName}\"",
+                    FileName = @"python-bps\py38\python.exe", 
+                    Arguments = $"python-bps\\test.py \"{openFileDialog.FileName}\"",
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     CreateNoWindow = true

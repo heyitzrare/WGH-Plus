@@ -100,15 +100,17 @@
             this.gbDefaultSettings = new System.Windows.Forms.GroupBox();
             this.pnCorruptionEngine = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.mtb_BlastRange = new WindowsGlitchHarvester.Components.MultiTrackBar_Comp();
-            this.mtb_StartingAddress = new WindowsGlitchHarvester.Components.MultiTrackBar_Comp();
-            this.mtb_Intensity = new WindowsGlitchHarvester.Components.MultiTrackBar_Comp();
             this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.lbStockpile = new System.Windows.Forms.ListBox();
+            this.buttonCBStash = new System.Windows.Forms.Button();
+            this.buttonImportBPS = new System.Windows.Forms.Button();
+            this.mtb_BlastRange = new WindowsGlitchHarvester.Components.MultiTrackBar_Comp();
+            this.mtb_StartingAddress = new WindowsGlitchHarvester.Components.MultiTrackBar_Comp();
+            this.mtb_Intensity = new WindowsGlitchHarvester.Components.MultiTrackBar_Comp();
             this.gbNightmareEngineSettings.SuspendLayout();
             this.pnTargetPanel.SuspendLayout();
             this.pnBottom.SuspendLayout();
@@ -171,7 +173,7 @@
             this.lbStashHistory.Location = new System.Drawing.Point(229, 96);
             this.lbStashHistory.Name = "lbStashHistory";
             this.lbStashHistory.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lbStashHistory.Size = new System.Drawing.Size(147, 183);
+            this.lbStashHistory.Size = new System.Drawing.Size(147, 135);
             this.lbStashHistory.TabIndex = 3;
             this.lbStashHistory.TabStop = false;
             this.lbStashHistory.Tag = "color:darker";
@@ -202,7 +204,7 @@
             this.btnClearStashHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearStashHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btnClearStashHistory.ForeColor = System.Drawing.Color.White;
-            this.btnClearStashHistory.Location = new System.Drawing.Point(229, 280);
+            this.btnClearStashHistory.Location = new System.Drawing.Point(229, 232);
             this.btnClearStashHistory.Name = "btnClearStashHistory";
             this.btnClearStashHistory.Size = new System.Drawing.Size(147, 32);
             this.btnClearStashHistory.TabIndex = 5;
@@ -344,7 +346,7 @@
             this.btnAddStashToStockpile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddStashToStockpile.Font = new System.Drawing.Font("Webdings", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this.btnAddStashToStockpile.ForeColor = System.Drawing.Color.White;
-            this.btnAddStashToStockpile.Location = new System.Drawing.Point(387, 154);
+            this.btnAddStashToStockpile.Location = new System.Drawing.Point(387, 126);
             this.btnAddStashToStockpile.Name = "btnAddStashToStockpile";
             this.btnAddStashToStockpile.Size = new System.Drawing.Size(22, 80);
             this.btnAddStashToStockpile.TabIndex = 24;
@@ -1289,49 +1291,6 @@
             this.panel1.TabIndex = 114;
             this.panel1.Tag = "color:darker";
             // 
-            // mtb_BlastRange
-            // 
-            this.mtb_BlastRange.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.mtb_BlastRange.DisplayCheckbox = true;
-            this.mtb_BlastRange.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.mtb_BlastRange.Label = "Blast Range";
-            this.mtb_BlastRange.Location = new System.Drawing.Point(10, 141);
-            this.mtb_BlastRange.Maximum = ((long)(100));
-            this.mtb_BlastRange.Name = "mtb_BlastRange";
-            this.mtb_BlastRange.Size = new System.Drawing.Size(190, 63);
-            this.mtb_BlastRange.TabIndex = 28;
-            this.mtb_BlastRange.Tag = "color:darker";
-            this.mtb_BlastRange.UncapNumericBox = false;
-            this.mtb_BlastRange.Value = ((long)(0));
-            // 
-            // mtb_StartingAddress
-            // 
-            this.mtb_StartingAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.mtb_StartingAddress.DisplayCheckbox = false;
-            this.mtb_StartingAddress.Label = "Start Address";
-            this.mtb_StartingAddress.Location = new System.Drawing.Point(10, 72);
-            this.mtb_StartingAddress.Maximum = ((long)(100));
-            this.mtb_StartingAddress.Name = "mtb_StartingAddress";
-            this.mtb_StartingAddress.Size = new System.Drawing.Size(190, 63);
-            this.mtb_StartingAddress.TabIndex = 27;
-            this.mtb_StartingAddress.Tag = "color:darker";
-            this.mtb_StartingAddress.UncapNumericBox = false;
-            this.mtb_StartingAddress.Value = ((long)(0));
-            // 
-            // mtb_Intensity
-            // 
-            this.mtb_Intensity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.mtb_Intensity.DisplayCheckbox = false;
-            this.mtb_Intensity.Label = "Intensity";
-            this.mtb_Intensity.Location = new System.Drawing.Point(10, 3);
-            this.mtb_Intensity.Maximum = ((long)(500000));
-            this.mtb_Intensity.Name = "mtb_Intensity";
-            this.mtb_Intensity.Size = new System.Drawing.Size(190, 63);
-            this.mtb_Intensity.TabIndex = 26;
-            this.mtb_Intensity.Tag = "color:darker";
-            this.mtb_Intensity.UncapNumericBox = false;
-            this.mtb_Intensity.Value = ((long)(0));
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -1410,6 +1369,85 @@
             this.lbStockpile.SelectedIndexChanged += new System.EventHandler(this.lbStockpile_SelectedIndexChanged);
             this.lbStockpile.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbStockpile_MouseDown);
             // 
+            // buttonCBStash
+            // 
+            this.buttonCBStash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonCBStash.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.buttonCBStash.FlatAppearance.BorderSize = 0;
+            this.buttonCBStash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCBStash.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCBStash.ForeColor = System.Drawing.Color.White;
+            this.buttonCBStash.Location = new System.Drawing.Point(297, 270);
+            this.buttonCBStash.Name = "buttonCBStash";
+            this.buttonCBStash.Size = new System.Drawing.Size(61, 42);
+            this.buttonCBStash.TabIndex = 5;
+            this.buttonCBStash.TabStop = false;
+            this.buttonCBStash.Tag = "color:darker";
+            this.buttonCBStash.Text = "Create Blank Stash";
+            this.buttonCBStash.UseVisualStyleBackColor = false;
+            this.buttonCBStash.Click += new System.EventHandler(this.buttonCBStash_Click);
+            // 
+            // buttonImportBPS
+            // 
+            this.buttonImportBPS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonImportBPS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.buttonImportBPS.FlatAppearance.BorderSize = 0;
+            this.buttonImportBPS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonImportBPS.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonImportBPS.ForeColor = System.Drawing.Color.White;
+            this.buttonImportBPS.Location = new System.Drawing.Point(230, 270);
+            this.buttonImportBPS.Name = "buttonImportBPS";
+            this.buttonImportBPS.Size = new System.Drawing.Size(61, 42);
+            this.buttonImportBPS.TabIndex = 5;
+            this.buttonImportBPS.TabStop = false;
+            this.buttonImportBPS.Tag = "color:darker";
+            this.buttonImportBPS.Text = "Create Stash from patched binary";
+            this.buttonImportBPS.UseVisualStyleBackColor = false;
+            this.buttonImportBPS.Click += new System.EventHandler(this.buttonImportBPS_Click);
+            // 
+            // mtb_BlastRange
+            // 
+            this.mtb_BlastRange.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.mtb_BlastRange.DisplayCheckbox = true;
+            this.mtb_BlastRange.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.mtb_BlastRange.Label = "Blast Range";
+            this.mtb_BlastRange.Location = new System.Drawing.Point(10, 141);
+            this.mtb_BlastRange.Maximum = ((long)(100));
+            this.mtb_BlastRange.Name = "mtb_BlastRange";
+            this.mtb_BlastRange.Size = new System.Drawing.Size(190, 63);
+            this.mtb_BlastRange.TabIndex = 28;
+            this.mtb_BlastRange.Tag = "color:darker";
+            this.mtb_BlastRange.UncapNumericBox = false;
+            this.mtb_BlastRange.Value = ((long)(0));
+            // 
+            // mtb_StartingAddress
+            // 
+            this.mtb_StartingAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.mtb_StartingAddress.DisplayCheckbox = false;
+            this.mtb_StartingAddress.Label = "Start Address";
+            this.mtb_StartingAddress.Location = new System.Drawing.Point(10, 72);
+            this.mtb_StartingAddress.Maximum = ((long)(100));
+            this.mtb_StartingAddress.Name = "mtb_StartingAddress";
+            this.mtb_StartingAddress.Size = new System.Drawing.Size(190, 63);
+            this.mtb_StartingAddress.TabIndex = 27;
+            this.mtb_StartingAddress.Tag = "color:darker";
+            this.mtb_StartingAddress.UncapNumericBox = false;
+            this.mtb_StartingAddress.Value = ((long)(0));
+            // 
+            // mtb_Intensity
+            // 
+            this.mtb_Intensity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.mtb_Intensity.DisplayCheckbox = false;
+            this.mtb_Intensity.Label = "Intensity";
+            this.mtb_Intensity.Location = new System.Drawing.Point(10, 3);
+            this.mtb_Intensity.Maximum = ((long)(500000));
+            this.mtb_Intensity.Name = "mtb_Intensity";
+            this.mtb_Intensity.Size = new System.Drawing.Size(190, 63);
+            this.mtb_Intensity.TabIndex = 26;
+            this.mtb_Intensity.Tag = "color:darker";
+            this.mtb_Intensity.UncapNumericBox = false;
+            this.mtb_Intensity.Value = ((long)(0));
+            // 
             // WGH_MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1418,6 +1456,8 @@
             this.ClientSize = new System.Drawing.Size(864, 625);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.label6);
+            this.Controls.Add(this.buttonImportBPS);
+            this.Controls.Add(this.buttonCBStash);
             this.Controls.Add(this.btnClearStashHistory);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnCorruptionEngine);
@@ -1555,6 +1595,8 @@
         public Components.MultiTrackBar_Comp mtb_Intensity;
         public Components.MultiTrackBar_Comp mtb_StartingAddress;
         public Components.MultiTrackBar_Comp mtb_BlastRange;
+        private System.Windows.Forms.Button buttonCBStash;
+        private System.Windows.Forms.Button buttonImportBPS;
     }
 }
 

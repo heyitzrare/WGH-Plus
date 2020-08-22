@@ -15,7 +15,7 @@ namespace WindowsGlitchHarvester
 
     public static class WGH_Core
     {
-		public static string WghVersion = "0.98";
+		public static string WghVersion = "0.99 RC1";
 
         private static volatile int _seed = DateTime.Now.Millisecond;
         public static int seed { get { return ++_seed; } }
