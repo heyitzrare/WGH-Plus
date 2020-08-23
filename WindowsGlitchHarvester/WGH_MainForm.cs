@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -261,7 +262,7 @@ namespace WindowsGlitchHarvester
             gbNightmareEngineSettings.Location = new Point(gbDefaultSettings.Location.X, gbDefaultSettings.Location.Y);
             gbVectorEngineSettings.Location = new Point(gbDefaultSettings.Location.X, gbDefaultSettings.Location.Y);
 
-            this.Text = "WGH Legacy " + WGH_Core.WghVersion;
+            this.Text = "WGH+ " + WGH_Core.WghVersion;
 
             mtb_Intensity.ValueChanged += Mtb_Intensity_ValueChanged;
             mtb_StartingAddress.ValueChanged += Mtb_StartingAddress_ValueChanged;
@@ -1199,18 +1200,9 @@ Are you sure you want to reset the current target's backup?", "WARNING", Message
 
                 ContextMenuStrip columnsMenu = new ContextMenuStrip();
                 (columnsMenu.Items.Add("Open Selected Item in Blast Editor", null, new EventHandler((ob, ev) => {
-                    if (WGH_Core.beForm != null)
-                    {
-                        WGH_Core.beForm.Close();
-                        WGH_Core.beForm = new WGH_BlastEditorForm();
-                        WGH_Core.beForm.LoadStashkey(WGH_Core.currentStashkey);
-                    }
-                    else
-                    {
-                        WGH_Core.beForm = new WGH_BlastEditorForm();
-                        WGH_Core.beForm.LoadStashkey(WGH_Core.currentStashkey);
-                    }
-                    
+                    if (WGH_Core.beForm != null) WGH_Core.beForm.Close();
+                    WGH_Core.beForm = new WGH_BlastEditorForm();
+                    WGH_Core.beForm.LoadStashkey(WGH_Core.currentStashkey);
                 })) as ToolStripMenuItem).Enabled = (lbStashHistory.SelectedIndex != -1 && lbStashHistory.SelectedItems.Count == 1);
 
                 (columnsMenu.Items.Add("Merge Selected Stashkeys", null, new EventHandler((ob, ev) =>
@@ -1395,5 +1387,56 @@ Are you sure you want to reset the current target's backup?", "WARNING", Message
 
         }
 
+        private void buttonCBStash_Click(object sender, EventArgs e)
+        {
+            lbStashHistory.Items.Add(new StashKey(WGH_Core.GetRandomKey(), new BlastLayer()));
+        }
+
+        private void buttonImportBPS_Click(object sender, EventArgs e)
+        {
+            // Create stashkey
+            StashKey sk = new StashKey(WGH_Core.GetRandomKey(), new BlastLayer());
+
+            string origname = WGH_Core.currentTargetFullName;
+            string patdname;
+
+            // Ask for patched file
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Title = "Select a patched file to import",
+                CheckFileExists = true,
+                Filter = "All files (*.*)|*.*"
+            };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK) patdname = openFileDialog.FileName;
+            else return;
+
+            byte[] origbytes = File.ReadAllBytes(origname);
+            byte[] patdbytes = File.ReadAllBytes(patdname);
+
+            if (origbytes.Length != patdbytes.Length) MessageBox.Show(
+                "The original and patched file are different lengths. Any bytes outside the range of the original file will be ignored.",
+                $"WGH+ {WGH_Core.WghVersion}",
+                MessageBoxButtons.OK
+            );
+
+            // pick the smallest length so we don't go outside the range of anything
+            int patchlen = origbytes.Length > patdbytes.Length ? patdbytes.Length : origbytes.Length;
+
+            for (int bytePointer = 0; bytePointer <= patchlen-1; bytePointer++)
+            {
+                if (origbytes[bytePointer] != patdbytes[bytePointer])
+                {
+                    sk.BlastLayer.Layer.Add(new BlastByte("File", bytePointer, BlastByteType.SET, patdbytes[bytePointer], true));
+                }
+            }
+
+            WGH_Core.ghForm.DontLoadSelectedStash = true;
+            WGH_Core.ghForm.lbStashHistory.Items.Add(sk);
+            WGH_Core.ghForm.RefreshStashHistory();
+            WGH_Core.ghForm.lbStockpile.ClearSelected();
+            WGH_Core.ghForm.lbStashHistory.ClearSelected();
+            WGH_Core.ghForm.lbStashHistory.SelectedIndex = WGH_Core.ghForm.lbStashHistory.Items.Count - 1;
+        }
     }
 }
